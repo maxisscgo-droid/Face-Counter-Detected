@@ -84,44 +84,44 @@ cap = find_real_camera()
 if cap is None:
     exit(1)
 
-frame_timestamp_ms = 0
-fail_count = 0
-prev_count = 0
-last_print_time = time.time()
+frametimestampms = 0
+failcount = 0
+prevcount = 0
+lastprinttime = time.time()
 
 with FaceDetector.create_from_options(VideoOptions) as detector:
     while cap.isOpened():
         success, image = cap.read()
         if not success:
-            fail_count += 1
-            if fail_count > 10:
+            failcount += 1
+            if failcount > 10:
                 break
             continue
 
-        fail_count = 0
-        frame_timestamp_ms += 33
+        failcount = 0
+        frametimestampms += 33
 
         rgb_image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
         mp_image = mp.Image(image_format=mp.ImageFormat.SRGB, data=rgb_image)
 
-        detection_result = detector.detect_for_video(mp_image, frame_timestamp_ms)
-        face_count = len(detection_result.detections)
+        detection_result = detector.detect_for_video(mp_image, frametimestampms)
+        FaceCount = len(detection_result.detections)
 
         draw_detections(image, detection_result)
         flipped = cv2.flip(image, 1)
 
-        if face_count > prev_count:
+        if FaceCount > prevcount:
             print("SE DETECTO UNA PERSONA")
             timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M-%S")
             cv2.imwrite(f'Capturas/captura_{timestamp}.png', flipped)
-        prev_count = face_count
+        prevcount = FaceCount
 
         now = time.time()
-        if now - last_print_time >= 5:
-            print(f"Personas detectadas: {face_count}")
-            last_print_time = now
+        if now - lastprinttime >= 5:
+            print(f"Personas detectadas: {FaceCount}")
+            lastprinttime = now
 
-        cv2.putText(flipped, f"Personas: {face_count}", (10, 40),
+        cv2.putText(flipped, f"Personas: {FaceCount}", (10, 40),
                     cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
 
         cv2.imshow('MediaPipe Face Detection', flipped)
