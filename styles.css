@@ -1,0 +1,79 @@
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap');
+
+body {
+    background-size: cover; 
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-attachment: fixed; 
+    background-color: rgb(0, 0, 0);
+}
+
+
+*{
+padding: 0;
+margin: 0;
+box-sizing: border-box;
+font-family: 'Share Tech Mono', monospace;
+}
+
+body{
+width: 100%;
+height: 100vh;
+display: flex;
+justify-content: center;
+align-items: center;
+}
+
+.Container{
+width: 100%;
+display: flex;
+max-width: 1100px;
+}
+
+.card{
+width: 90%;
+max-width: 500px;
+padding: 30px;
+margin: 5px;
+border-radius: 10px;
+overflow: hidden;
+outline-style: solid;
+outline-width: 2px;
+outline-color: rgb(255, 255, 255);
+background-color: rgb(0, 0, 0);
+cursor: default;
+transition: all 250ms ease;
+}
+
+img {
+    width: 100%;
+    display: block;
+}
+
+.card:hover{
+    transform: translateY(-2%);
+}
+
+.contenido{
+text-align: center;
+}
+.buttone{
+    border-radius: 5px;
+    border-style: solid;
+    border-color: rgb(13, 66, 33);
+    width: 80%;
+    height: 50px;
+    background-color: rgb(107, 236, 156);
+    margin-top: 30px;
+    margin-bottom: 10px;
+    font-family: 'Share Tech Mono', monospace;
+    font-size: 16px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.buttone:active{
+  transform: translateY(-2%);
+border-color: rgb(149, 255, 192);
+background-color: rgb(206, 255, 224); 
+}
